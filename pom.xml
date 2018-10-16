@@ -61,8 +61,6 @@
         <jacoco.version>0.8.1</jacoco.version>
 
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
-        <findbugs.version>3.0.1</findbugs.version>
         <docker-maven-plugin.version>1.1.1</docker-maven-plugin.version>
     </properties>
 
@@ -154,11 +152,7 @@
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>findbugs</artifactId>
-            <version>${findbugs.version}</version>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -210,33 +204,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>findbugs</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>
-                        <version>${findbugs-maven-plugin.version}</version>
-                        <configuration>
-                            <excludeFilterFile>${basedir}/etc/findbugs-exclude-filter.xml</excludeFilterFile>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <profile>
             <id>jacoco</id>
             <build>
