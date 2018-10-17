@@ -10,23 +10,23 @@ import java.util.List;
 
 @RestController
 public class PersonRestService {
-    private static final List<Person> persons;
+  private static final List<Person> persons;
 
-    static {
-        persons = new ArrayList<>();
-        persons.add(new Person("user1", "user1@lucky-fit.com"));
-        persons.add(new Person("user2", "user2@lucky-fit.com"));
-    }
+  static {
+    persons = new ArrayList<>();
+    persons.add(new Person("user1", "user1@lucky-fit.com"));
+    persons.add(new Person("user2", "user2@lucky-fit.com"));
+  }
 
-    @RequestMapping(path = "/persons", method = RequestMethod.GET)
-    public static List<Person> getPersons() {
-        return persons;
-    }
+  @RequestMapping(path = "/persons", method = RequestMethod.GET)
+  public static List<Person> getPersons() {
+    return persons;
+  }
 
-    @RequestMapping(path = "/persons/{name}", method = RequestMethod.GET)
-    public static Person getPerson(@PathVariable("name") String name) {
-        return persons.stream()
-                .filter(person -> name.equalsIgnoreCase(person.getName()))
-                .findAny().orElse(null);
-    }
+  @RequestMapping(path = "/persons/{name}", method = RequestMethod.GET)
+  public static Person getPerson(@PathVariable("name") String name) {
+    return persons.stream()
+      .filter(person -> name.equalsIgnoreCase(person.getName()))
+      .findAny().orElse(null);
+  }
 }
