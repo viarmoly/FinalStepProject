@@ -15,22 +15,22 @@ import org.danit.security.JwtUser;
 @RestController
 public class UserRestController {
 
-    @Value("${jwt.header}")
-    private String tokenHeader;
+  @Value("${jwt.header}")
+  private String tokenHeader;
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+  @Autowired
+  private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    @Qualifier("jwtUserDetailsService")
-    private UserDetailsService userDetailsService;
+  @Autowired
+  @Qualifier("jwtUserDetailsService")
+  private UserDetailsService userDetailsService;
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
-        String token = request.getHeader(tokenHeader).substring(7);
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        return user;
-    }
+  @RequestMapping(value = "user", method = RequestMethod.GET)
+  public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+    String token = request.getHeader(tokenHeader).substring(7);
+    String username = jwtTokenUtil.getUsernameFromToken(token);
+    JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+    return user;
+  }
 
 }

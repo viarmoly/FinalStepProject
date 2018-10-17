@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VersionRestService {
 
-
-    @RequestMapping(path = "/version", method = RequestMethod.GET)
-    public static String getVersion() {
-        return "0.0.1";
-    }
+  @RequestMapping(path = "/version", method = RequestMethod.GET)
+  public static String getVersion() {
+    return "0.0.1";
+  }
 }
