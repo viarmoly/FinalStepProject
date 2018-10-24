@@ -39,59 +39,32 @@
 
     </developers>
 
-    <scm>
-        <connection>scm:git:git://github.com/gorserg/LuckyFitApp.git</connection>
-        <url>https://github.com/gorserg/LuckyFitApp</url>
-        <developerConnection>scm:git:git@github.com/gorserg/LuckyFitApp.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
 
         <jjwt.version>0.9.1</jjwt.version>
-        <jacoco.version>0.8.1</jacoco.version>
-
+        <jacoco.version>0.8.2</jacoco.version>
+        <spring.version>2.0.4.RELEASE</spring.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <docker-maven-plugin.version>1.1.1</docker-maven-plugin.version>
     </properties>
 
     <dependencies>
-
         <!--Spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
         </dependency>
 
         <!--Web-->
@@ -101,22 +74,12 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <!--Database-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.197</version>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <!--Pojo-->
@@ -126,8 +89,8 @@
             <version>1.18.2</version>
             <scope>provided</scope>
         </dependency>
-        <!--Tests-->
 
+        <!--Tests-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -140,17 +103,11 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
-        <!--Other-->
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>${jjwt.version}</version>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.5.3</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>
@@ -160,7 +117,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.8</version>
+                <version>0.8.2</version>
                 <executions>
                     <execution>
                         <id>jacoco-initialize</id>
@@ -180,6 +137,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.version}</version>
             </plugin>
 
             <plugin>
@@ -193,32 +151,9 @@
             </plugin>
 
             <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>${docker-maven-plugin.version}</version>
-
-                <configuration>
-                    <imageName>hubae/LuckyFitApp</imageName>
-                    <baseImage>openjdk:8</baseImage>
-                    <imageTags>
-                        <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
-                    </imageTags>
-
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-
-                    <!-- copy the service's jar file from target into the root directory of the image -->
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-
-                    <serverId>docker-hub</serverId>
-                    <registryUrl>https://index.docker.io/v1/</registryUrl>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
             </plugin>
 
             <plugin>
@@ -242,52 +177,7 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>jacoco</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>${jacoco.version}</version>
-                        <executions>
-                            <execution>
-                                <id>prepare-agent</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>post-unit-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                                <configuration>
-                                    <!-- Sets the path to the file which contains the execution data. -->
-
-                                    <dataFile>target/jacoco.exec</dataFile>
-                                    <!-- Sets the output directory for the code coverage report. -->
-                                    <outputDirectory>target/jacoco-ut</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
