@@ -7,7 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Entity;
-import java.util.List;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 
 @Data
 @Entity
@@ -25,13 +27,10 @@ public class User {
   @Column(name = "user_password")
   private String password;
 
-  @Column(name = "user_role_id")
-  private int userRoleId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "user_role_id")
+  private UserRole userRole;
 
   @Column(name = "user_salt")
   String userSalt;
-
-//  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//  @JoinColumn(name = "contact_id")
-//  private List<Contact> contacts;
 }

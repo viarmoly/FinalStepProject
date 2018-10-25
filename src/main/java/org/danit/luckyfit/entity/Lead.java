@@ -2,12 +2,15 @@ package org.danit.luckyfit.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.GenerationType;
 import java.sql.Timestamp;
 
 @Entity
@@ -28,6 +31,7 @@ public class Lead {
   @Column(name = "lead_comments")
   private String comments;
 
-  @Column(name = "lead_product_id")
-  private int productId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "product_id")
+  private Product product;
 }

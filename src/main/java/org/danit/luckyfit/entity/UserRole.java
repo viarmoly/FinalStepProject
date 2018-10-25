@@ -1,27 +1,25 @@
 package org.danit.luckyfit.entity;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
-import javax.persistence.OneToMany;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GenerationType;
 
 @Data
 @Entity
 @Table(name = "user_role")
 
 public class UserRole {
+
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "user_role_id")
   private int id;
 
-  @OneToMany
+  @Column(name = "user_role_name")
   private String role;
-
-  public UserRole(int id, String role) {
-    this.id = id;
-    this.role = role;
-  }
 }
