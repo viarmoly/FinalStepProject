@@ -109,7 +109,6 @@
             <version>2.5.3</version>
             <type>pom</type>
         </dependency>
-
     </dependencies>
 
     <build>
