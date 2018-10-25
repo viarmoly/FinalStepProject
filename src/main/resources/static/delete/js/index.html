@@ -17,22 +17,22 @@
 <div class="container">
    <h1>JWT Spring Security Demo</h1>
 
-   <div class="alert alert-danger" id="notLoggedIn">Not logged in!</div>
+   <div class="alert alert-danger" userId="notLoggedIn">Not logged in!</div>
 
    <div class="row">
       <div class="col-md-6">
-         <div class="panel panel-default" id="login">
+         <div class="panel panel-default" userId="login">
             <div class="panel-heading">
                <h3 class="panel-title">Login</h3>
             </div>
             <div class="panel-body">
-               <form id="loginForm">
+               <form userId="loginForm">
                   <div class="form-group">
-                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="username"
+                     <input type="text" class="form-control" userId="exampleInputEmail1" placeholder="username"
                             required name="username">
                   </div>
                   <div class="form-group">
-                     <input type="password" class="form-control" id="exampleInputPassword1"
+                     <input type="password" class="form-control" userId="exampleInputPassword1"
                             placeholder="password" required name="password">
                   </div>
                   <div class="well">
@@ -48,14 +48,14 @@
             </div>
          </div>
 
-         <div id="userInfo">
+         <div userId="userInfo">
             <div class="panel panel-default">
                <div class="panel-heading">
                   <h3 class="panel-title">Authenticated user</h3>
                </div>
                <div class="panel-body">
-                  <div id="userInfoBody"></div>
-                  <button type="button" class="btn btn-default" id="logoutButton">logout</button>
+                  <div userId="userInfoBody"></div>
+                  <button type="button" class="btn btn-default" userId="logoutButton">logout</button>
                </div>
             </div>
          </div>
@@ -63,33 +63,33 @@
 
       <div class="col-md-6">
          <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 16px;">
-            <button type="button" class="btn btn-default" id="exampleServiceBtn">call example service</button>
-            <button type="button" class="btn btn-default" id="adminServiceBtn">call admin protected service</button>
+            <button type="button" class="btn btn-default" userId="exampleServiceBtn">call example service</button>
+            <button type="button" class="btn btn-default" userId="adminServiceBtn">call admin protected service</button>
          </div>
          <div class="panel panel-default">
             <div class="panel-heading">
                <h3 class="panel-title">Response:</h3>
             </div>
             <div class="panel-body">
-               <pre id="response"></pre>
+               <pre userId="response"></pre>
             </div>
          </div>
       </div>
    </div>
 
    <div class="row">
-      <div id="loggedIn" class="col-md-6">
+      <div userId="loggedIn" class="col-md-6">
          <div class="panel panel-default">
             <div class="panel-heading">
                <h3 class="panel-title">Token information</h3>
             </div>
-            <div class="panel-body" id="loggedInBody"></div>
+            <div class="panel-body" userId="loggedInBody"></div>
          </div>
       </div>
    </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="loginErrorModal">
+<div class="modal fade" tabindex="-1" role="dialog" userId="loginErrorModal">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
