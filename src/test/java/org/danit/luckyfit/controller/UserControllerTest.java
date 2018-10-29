@@ -22,8 +22,11 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -91,8 +94,11 @@ public class UserControllerTest {
             .willReturn(users.get(1));
 
     mockMvc.perform(get("/api/v1/users/{id}", 1)).andDo(print());
+  }
 
-
+  @Test
+  public void testDeleteById() throws Exception {
+    mockMvc.perform(delete("/api/v1/users/{id}", 1)).andExpect(status().isOk());
 
   }
 }
