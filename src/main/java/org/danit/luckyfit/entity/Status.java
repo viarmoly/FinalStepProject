@@ -1,11 +1,13 @@
 package org.danit.luckyfit.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Entity
 @Table(name = "status")
 public class Status {
 
