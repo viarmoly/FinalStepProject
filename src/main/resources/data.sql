@@ -16,3 +16,6 @@ insert into product (product_id, product_name) values (2, 'secondProduct');
 insert into status (id_status, name_status) VALUES (1, 'active_status1');
 insert into status (id_status, name_status) VALUES (2, 'active_status2');
 
+--contact data
+insert into contact (contact_id, contact_name, contact_phone,  contact_email) values (1, 'First', '+380667464646', 'gazeta@gmail.com');
+insert into contact (contact_id,  contact_name, contact_phone, contact_email) values (2, 'Second', '+380509387132', 'lenta@gmail.com');
