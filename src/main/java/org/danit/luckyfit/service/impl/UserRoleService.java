@@ -17,7 +17,7 @@ public class UserRoleService {
     return userRoleRepository.findAll();
   }
 
-  public void deleteByUserId(int id) {
+  public void deleteByUserRoleId(int id) {
     userRoleRepository.deleteById(id);
   }
 

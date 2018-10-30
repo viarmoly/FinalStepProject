@@ -1,8 +1,9 @@
 package org.danit.luckyfit.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.danit.luckyfit.entity.Product;
 import org.danit.luckyfit.entity.UserRole;
-import org.danit.luckyfit.service.impl.UserRoleService;
+import org.danit.luckyfit.service.impl.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
@@ -26,63 +26,54 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserRoleControllerTest {
+public class ProductControllerTest {
   private MockMvc mockMvc;
-  private List<UserRole> userRoles = new ArrayList<>();
-  private JacksonTester<List<UserRole>> jsonUserRoles;
+  private List<Product> products= new ArrayList<>();
+  private JacksonTester<List<Product>> jsonProducts;
 
   @Mock
-  private UserRoleService mockUserRoleService;
+  private ProductService mockProductService;
 
   @Autowired
-  UserRoleController mockUserRoleController;
-
-  @Autowired
-  UserController mockUserController;
+  ProductController productController;
 
   @Before
   public void setup() {
     JacksonTester.initFields(this, new ObjectMapper());
-    mockMvc = MockMvcBuilders.standaloneSetup(mockUserRoleController).build();
+    mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
   }
 
   @Before
   public void mockTestData() {
-    UserRole user = new UserRole();
-    UserRole admin = new UserRole();
-    UserRole god = new UserRole();
+    Product firstProduct = new Product();
+    Product secondProduct = new Product();
 
-    user.setRole("USER");
-    user.setId(1);
+    firstProduct.setProductId(1);
+    firstProduct.setProductName("firstProduct");
 
-    admin.setRole("ADMIN");
-    admin.setId(2);
+    secondProduct.setProductId(2);
+    secondProduct.setProductName("secondProduct");
 
-    god.setRole("GOD");
-    god.setId(3);
-
-    userRoles.add(user);
-    userRoles.add(admin);
-    userRoles.add(god);
+    products.add(firstProduct);
+    products.add(secondProduct);
   }
 
-  @Test
-  public void findAll() throws Exception {
-    given(mockUserRoleService.findAll())
-            .willReturn(userRoles);
 
-    MockHttpServletResponse response = mockMvc.perform(get("/api/v1/userRoles")
+  @Test
+  public void findAll() throws Exception { given(mockProductService.findAll())
+          .willReturn(products);
+
+    MockHttpServletResponse response = mockMvc.perform(get("/api/v1/products")
             .contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse();
 
     assertEquals(200, response.getStatus());
-    assertEquals(response.getContentAsString(), jsonUserRoles.write(userRoles).getJson());
+    assertEquals(response.getContentAsString(), jsonProducts.write(products).getJson());
   }
 
   @Test
   public void deleteByUserId() throws Exception {
-    mockMvc.perform(delete("/api/v1/userRoles/{id}", 3));
+    mockMvc.perform(delete("/api/v1/products/{id}", 1)).andExpect(status().isOk());
   }
 }
