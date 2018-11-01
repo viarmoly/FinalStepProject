@@ -20,7 +20,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -66,6 +68,12 @@ public class StatusControllerTest {
 
     assertEquals(200, response.getStatus());
     assertEquals(response.getContentAsString(), jsonStatuses.write(statuses).getJson());
+  }
+
+  @Test
+  public void testDeleteById() throws Exception {
+    mockMvc.perform(delete("/api/v1/statuses/{id}", 1)).andExpect(status().isMethodNotAllowed());
+
   }
 }
 
