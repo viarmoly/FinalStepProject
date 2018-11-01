@@ -8,8 +8,17 @@ import {PrivateRoute} from '../../components';
 import {HomePage} from '../HomePage';
 import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
-
+// import {Header} from '../Header/index'
+//
 import './index.scss';
+
+
+import User from '../User/User'
+import Contact from '../Contact/Contact'
+import Lead from '../Lead/Lead'
+import Product from '../Product/Product'
+import Status from '../Status/Status'
+import UserRole from '../UserRole/UserRole'
 
 class App extends React.Component {
     constructor(props) {
@@ -36,6 +45,12 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" component={HomePage}/>
                                 <Route path="/login" component={LoginPage}/>
                                 <Route path="/register" component={RegisterPage}/>
+                                <Route path ="/users" component={User}/>
+                                <Route path ="/contacts" component={Contact}/>
+                                <Route path ="/leads" component={Lead}/>
+                                <Route path ="/products" component={Product}/>
+                                <Route path ="/statuses" component={Status}/>
+                                <Route path ="/userRoles" component={UserRole}/>
                             </div>
                         </Router>
                     </div>
