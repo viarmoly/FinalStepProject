@@ -6,14 +6,13 @@ class User extends Component {
   render() {
 
     const usersList = this.props.users;
-    console.log(this.state);
+    console.log(this.props);
     const users = usersList.map((user) => {
 
       return (
-          <div className="main-content__movie">
-            <img src={user.id} alt="" className="main-content__movie-img"/>
-            <div className="main-content__movie-details">
-              <h3 className="main-content__movie-details__title-native">
+          <div>
+            <div>
+              <h3>
                 {user.name}
               </h3>
             </div>
