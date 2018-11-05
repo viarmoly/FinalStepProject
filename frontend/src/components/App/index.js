@@ -2,12 +2,12 @@ import React from 'react';
 import {Router, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {history} from '../../helpers';
-import {alertActions} from '../../actions';
+import {history} from '../../helpers/index';
+import {alertActions} from '../../actions/index';
 import {PrivateRoute} from '../../components';
-import {HomePage} from '../HomePage';
-import {LoginPage} from '../LoginPage';
-import {RegisterPage} from '../RegisterPage';
+import {HomePage} from '../HomePage/index';
+import {LoginPage} from '../LoginPage/index';
+import {RegisterPage} from '../RegisterPage/index';
 // import {Header} from '../Header/index'
 //
 import './index.scss';
