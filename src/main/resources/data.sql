@@ -1,4 +1,3 @@
-
 -- user_role data
 insert into user_role (user_role_id, user_role_name) values (1, 'USER');
 insert into user_role (user_role_id, user_role_name) values (2, 'ADMIN');
@@ -13,9 +12,19 @@ insert into product (product_id, product_name) values (1, 'firstProduct');
 insert into product (product_id, product_name) values (2, 'secondProduct');
 
 -- user status
-insert into status (id_status, name_status) VALUES (1, 'active_status1');
-insert into status (id_status, name_status) VALUES (2, 'active_status2');
+insert into status (status_id, status_name) VALUES (1, 'active_status1');
+insert into status (status_id, status_name) VALUES (2, 'active_status2');
 
 --contact data
 insert into contact (contact_id, contact_name, contact_phone,  contact_email) values (1, 'First', '+380667464646', 'gazeta@gmail.com');
 insert into contact (contact_id,  contact_name, contact_phone, contact_email) values (2, 'Second', '+380509387132', 'lenta@gmail.com');
+
+-- lead
+ insert into lead (lead_id, lead_name, lead_creation_time, lead_comments, lead_contact_id, lead_user_id, lead_product_id, lead_status_id)
+ values (1, 'First Lead', '2018-11-01T21:42:32+00:00', 'Comments', 1, 1, 1, 1);
+
+insert into lead (lead_id, lead_name, lead_creation_time, lead_comments, lead_contact_id, lead_user_id, lead_product_id, lead_status_id)
+ values (2, 'First2 Lead', '2018-11-01T21:42:32+00:00', 'Comments2', 1, 1, 1, 1);
+
+insert into lead (lead_id, lead_name, lead_creation_time, lead_comments, lead_contact_id, lead_user_id, lead_product_id, lead_status_id)
+ values (3, 'Second Lead', '2018-11-01T21:42:32+00:00', 'Comments3', 2, 2, 2, 2);

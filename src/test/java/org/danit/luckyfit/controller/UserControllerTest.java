@@ -78,8 +78,7 @@ public class UserControllerTest {
 
   @Test
   public void testFindAll() throws Exception {
-    given(mockUserService.findAll())
-            .willReturn(users);
+    given(mockUserService.findAll()).willReturn(users);
 
     MockHttpServletResponse response = mockMvc.perform(get("/api/v1/users")
             .contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse();
@@ -98,6 +97,5 @@ public class UserControllerTest {
   @Test
   public void testDeleteById() throws Exception {
     mockMvc.perform(delete("/api/v1/users/{id}", 1)).andExpect(status().isOk());
-
   }
 }

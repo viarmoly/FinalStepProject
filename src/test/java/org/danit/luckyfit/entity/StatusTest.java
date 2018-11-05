@@ -14,7 +14,7 @@ public class StatusTest {
 
     assertEquals(1, status.getId());
     assertEquals("Test Name", status.getName());
-    assertEquals("Status{id=1, name='Test Name'}", status.toString());
+    assertEquals("Status(id=1, name=Test Name)", status.toString());
   }
 
 }
