@@ -9,19 +9,22 @@ public class UserTest {
   @Test
   public void testUser() {
     User user = new User();
+    UserRole userRoleExpected = new UserRole();
+    userRoleExpected.setId(1);
+    userRoleExpected.setRole("USER");
 
     user.setUserId(1);
     user.setUserName("Name");
     user.setPassword("Password");
-    user.setUserRoleId(1);
+    user.setUserRole(userRoleExpected);
     user.setUserSalt("Salt");
 
     assertEquals(1, user.getUserId());
     assertEquals("Name", user.getUserName());
     assertEquals("Password", user.getPassword());
-    assertEquals(1, user.getUserRoleId());
+    assertEquals(userRoleExpected, user.getUserRole());
     assertEquals("Salt", user.getUserSalt());
-    assertEquals("User(userId=1, userName=Name, password=Password, userRoleId=1, userSalt=Salt)", user.toString());
+    assertEquals("User(userId=1, userName=Name, password=Password, userRole=UserRole(id=1, role=USER), userSalt=Salt)", user.toString());
   }
 
 }
