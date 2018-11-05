@@ -1,5 +1,6 @@
 import React from 'react';
 import {Router, Route, Link,Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import User from '../User/User'
 import Contact from '../Contact/Contact'
@@ -27,7 +28,7 @@ class Header extends React.Component {
     }
 }
 
-export default
+export default Header
 
 
 
