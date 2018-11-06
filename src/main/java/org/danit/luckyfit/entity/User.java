@@ -1,23 +1,31 @@
 package org.danit.luckyfit.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Entity;
 import java.util.List;
 
 @Data
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "user")
 public class User {
-
   @Id
   @GeneratedValue
   @Column(name = "user_id")
-  private int userId;
+  private long userId;
 
   @Column(name = "user_name")
   private String userName;
@@ -25,13 +33,16 @@ public class User {
   @Column(name = "user_password")
   private String password;
 
-  @Column(name = "user_role_id")
-  private int userRoleId;
+  @ManyToOne
+  @JsonManagedReference
+  @JoinColumn(name = "user_role_id")
+  private UserRole userRole;
 
   @Column(name = "user_salt")
-  String userSalt;
+  private String userSalt;
 
-//  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//  @JoinColumn(name = "contact_id")
-//  private List<Contact> contacts;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonBackReference
+  @ToString.Exclude
+  private List<Lead> leads;
 }
