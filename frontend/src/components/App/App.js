@@ -14,6 +14,12 @@ import {loadUsers} from "../../actions/usersAction";
 
 class App extends React.Component {
 
+  componentDidMount() {
+    if (this.props.users.length === 0) {
+      this.props.loadUsers();
+    }
+  }
+
   render() {
     return (
         <div className="container">
@@ -35,16 +41,12 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-    const {alert} = state;
-    return {
-        alert
-    };
-}
-
-const mapDispatchToProps = dispatch => ({
-  loadUsers: () => dispatch(loadUsers)
+const mapStateToProps = state => ({
+  users: state.users
 });
 
-const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
-export {connectedApp as App};
+const mapDispatchToProps = dispatch => ({
+  loadUsers: () => dispatch(loadUsers())
+});
+
+export default connect (mapStateToProps, mapDispatchToProps)(App);

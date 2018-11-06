@@ -13,7 +13,7 @@ class User extends Component {
           <div>
             <div>
               <h3>
-                {user.name}
+                {user.userName}
               </h3>
             </div>
           </div>

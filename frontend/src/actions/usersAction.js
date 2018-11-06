@@ -1,7 +1,7 @@
-import {USERS_LOADED} from "./index";
+import {USERS_LOADED} from "./actions";
 
 export const loadUsers = () => dispatch => {
-  fetch('http://localhost:9000/api/v1/users')
+  fetch('/api/v1/users')
       .then(data => data.json())
       .then(data => dispatch({type:USERS_LOADED, payload: data}))
 };
