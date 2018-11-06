@@ -42,5 +42,9 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedApp = connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  loadUsers: () => dispatch(loadUsers)
+});
+
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 export {connectedApp as App};
