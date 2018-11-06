@@ -6,12 +6,16 @@ class User extends Component {
   render() {
 
     const usersList = this.props.users;
-    console.log(this.state);
+    console.log(this.props);
     const users = usersList.map((user) => {
 
       return (
           <div>
-            {user.userName}
+            <div>
+              <h3>
+                {user.name}
+              </h3>
+            </div>
           </div>
       )
     });
