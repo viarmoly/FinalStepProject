@@ -1,1 +1,2 @@
 export const USERS_LOADED = 'USERS_LOADED';
+export const USERROLES_LOADED = 'USERROLES_LOADED';

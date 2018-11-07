@@ -11,23 +11,15 @@ class User extends Component {
 
       return (
           <div>
-            <div>
-              <h3>
-                {user.userName}
-              </h3>
+            {user.userName}
             </div>
-          </div>
       )
     });
 
     return (
-        <div>
-          <div className="container">
-            <div className="main-content">
-              <h1>Users list</h1>
-              {users}
-            </div>
-          </div>
+        <div className="container">
+          <h1>Users list</h1>
+          {users}
         </div>
     )
   }

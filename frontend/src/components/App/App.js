@@ -11,6 +11,7 @@ import Product from '../Product/Product'
 import Status from '../Status/Status'
 import UserRole from '../UserRole/UserRole'
 import {loadUsers} from "../../actions/usersAction";
+import {loadUserRoles} from "../../actions/userRoleAcrtion";
 
 class App extends React.Component {
 
@@ -18,35 +19,39 @@ class App extends React.Component {
     if (this.props.users.length === 0) {
       this.props.loadUsers();
     }
+
+    if (this.props.userRoles.length === 0) {
+      this.props.loadUserRoles();
+    }
   }
 
   render() {
     return (
         <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
-            <User/>
-            <BrowserRouter>
-              <div>
-                <Route path="/users" component={User}/>
-                <Route path="/contacts" component={Contact}/>
-                <Route path="/leads" component={Lead}/>
-                <Route path="/products" component={Product}/>
-                <Route path="/statuses" component={Status}/>
-                <Route path="/userRoles" component={UserRole}/>
-              </div>
-            </BrowserRouter>
-          </div>
+          <BrowserRouter>
+            <div>
+              <Route path="/users" component={User}/>
+              <Route path="/contacts" component={Contact}/>
+              <Route path="/leads" component={Lead}/>
+              <Route path="/products" component={Product}/>
+              <Route path="/statuses" component={Status}/>
+              <Route path="/userRoles" component={UserRole}/>
+            </div>
+          </BrowserRouter>
+
         </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  users: state.users
+  users: state.users,
+  userRoles: state.userRoles
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadUsers: () => dispatch(loadUsers())
+  loadUsers: () => dispatch(loadUsers()),
+  loadUserRoles: () => dispatch(loadUserRoles())
 });
 
-export default connect (mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
