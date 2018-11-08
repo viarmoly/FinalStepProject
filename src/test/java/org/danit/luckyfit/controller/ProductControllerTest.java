@@ -2,7 +2,6 @@ package org.danit.luckyfit.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.danit.luckyfit.entity.Product;
-import org.danit.luckyfit.entity.UserRole;
 import org.danit.luckyfit.service.impl.ProductService;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerTest {
   private MockMvc mockMvc;
-  private List<Product> products= new ArrayList<>();
+  private List<Product> products = new ArrayList<>();
   private JacksonTester<List<Product>> jsonProducts;
 
   @Mock
@@ -50,11 +49,11 @@ public class ProductControllerTest {
     Product firstProduct = new Product();
     Product secondProduct = new Product();
 
-    firstProduct.setProductId(1);
-    firstProduct.setProductName("firstProduct");
+    firstProduct.setId(1);
+    firstProduct.setName("firstProduct");
 
-    secondProduct.setProductId(2);
-    secondProduct.setProductName("secondProduct");
+    secondProduct.setId(2);
+    secondProduct.setName("secondProduct");
 
     products.add(firstProduct);
     products.add(secondProduct);
@@ -62,11 +61,12 @@ public class ProductControllerTest {
 
 
   @Test
-  public void findAll() throws Exception { given(mockProductService.findAll())
-          .willReturn(products);
+  public void findAll() throws Exception {
+    given(mockProductService.findAll())
+        .willReturn(products);
 
     MockHttpServletResponse response = mockMvc.perform(get("/api/v1/products")
-            .contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse();
+        .contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn().getResponse();
 
     assertEquals(200, response.getStatus());
     assertEquals(response.getContentAsString(), jsonProducts.write(products).getJson());
@@ -74,6 +74,8 @@ public class ProductControllerTest {
 
   @Test
   public void deleteByUserId() throws Exception {
-    mockMvc.perform(delete("/api/v1/products/{id}", 1)).andExpect(status().isOk());
+    mockMvc.perform(delete("/api/v1/products/{id}", 1)
+        .contentType(MediaType.APPLICATION_JSON_UTF8))
+        .andExpect(status().isOk());
   }
 }

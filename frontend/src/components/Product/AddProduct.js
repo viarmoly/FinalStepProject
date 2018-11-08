@@ -26,7 +26,7 @@ class AddStatus extends Component {
         headers.append('Content-Type', 'application/json');
         headers.append('charset', 'UTF-8');
 
-        fetch('/api/v1/statuses', {
+        fetch('/api/v1/products', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(status)
@@ -36,10 +36,10 @@ class AddStatus extends Component {
     render() {
         return (
             <div>
-                <h2>Statuses page</h2>
+                <h2>Add product page</h2>
                 <form method='post' onSubmit={this.handleSubmit}>
-                    <input type="text" name="name" placeholder="Status name:" onChange={this.handleOnChange}/>
-                    <button type='submit'>Add Status</button>
+                    <input type="text" name="name" placeholder="Product name:" onChange={this.handleOnChange}/>
+                    <button type='submit'>Add Product</button>
                 </form>
             </div>
         )

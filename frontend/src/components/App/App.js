@@ -18,22 +18,23 @@ import {loadLeads, loadStatuses} from "../../actions/statusesAction";
 
 class App extends React.Component {
 
-  componentDidMount() {
-    if (this.props.users.length === 0) {
-      this.props.loadUsers();
-    }
+    componentDidMount() {
+        if (this.props.users.length === 0) {
+            this.props.loadUsers();
+        }
 
-    if (this.props.userRoles.length === 0) {
-      this.props.loadUserRoles();
-    }
+        if (this.props.userRoles.length === 0) {
+            this.props.loadUserRoles();
+        }
 
-    if (this.props.products.length === 0) {
-      this.props.loadProducts();
-    }
+        if (this.props.products.length === 0) {
+            this.props.loadProducts();
+        }
 
-    if (this.props.contacts.length === 0) {
-      this.props.loadContacts();
-    }
+        if (this.props.contacts.length === 0) {
+            this.props.loadContacts();
+        }
+
 
     if (this.props.statuses.length === 0) {
       this.props.loadStatuses();
@@ -53,10 +54,8 @@ class App extends React.Component {
               <Route path="/statuses" component={Status}/>
               <Route path="/userRoles" component={UserRole}/>
             </div>
-          </BrowserRouter>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 const mapStateToProps = state => ({

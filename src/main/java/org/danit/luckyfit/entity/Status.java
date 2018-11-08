@@ -9,16 +9,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.danit.luckyfit.StatusDeserializer;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
+import javax.persistence.Table;
 import java.util.List;
 
 @JsonDeserialize(using = StatusDeserializer.class)
