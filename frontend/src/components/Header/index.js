@@ -3,7 +3,7 @@ import {Router, Route, Link,Switch} from 'react-router-dom';
 
 import User from '../User/User'
 import Contact from '../Contact/Contact'
-import Lead from '../Lead/Lead'
+import Lead from '../Contact/ContactLeads'
 import Product from '../Product/Product'
 import Status from '../Status/Status'
 import UserRole from '../UserRole/UserRole'

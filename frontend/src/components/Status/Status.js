@@ -1,9 +1,33 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {connect} from "react-redux";
 
 class Status extends Component {
-    render(){
-        return <h2>Statuses page</h2>
-    }
+
+  render() {
+
+    const statusesList = this.props.statuses;
+    const statuses = statusesList.map((status) => {
+
+      return (
+          <div>
+            {status.name}
+          </div>
+      )
+    });
+
+    return (
+        <div className="container">
+          <h1>Statuses list</h1>
+          {statuses}
+        </div>
+    )
+  }
 }
 
-export default Status
+function mapStateToProps(state) {
+  return {
+    statuses: state.statuses
+  }
+}
+
+export default connect(mapStateToProps)(Status);

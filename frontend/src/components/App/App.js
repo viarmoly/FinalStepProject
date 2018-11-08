@@ -6,7 +6,7 @@ import './index.scss';
 
 import User from '../User/User'
 import Contact from '../Contact/Contact'
-import Lead from '../Lead/Lead'
+import ContactLeads from '../Contact/ContactLeads'
 import Product from '../Product/Product'
 import Status from '../Status/Status'
 import UserRole from '../UserRole/UserRole'
@@ -14,6 +14,7 @@ import {loadUsers} from "../../actions/usersAction";
 import {loadUserRoles} from "../../actions/userRoleAcrtion";
 import {loadProducts} from "../../actions/productsAction";
 import {loadContacts} from "../../actions/contactsAction";
+import {loadLeads, loadStatuses} from "../../actions/statusesAction";
 
 class App extends React.Component {
 
@@ -34,6 +35,9 @@ class App extends React.Component {
       this.props.loadContacts();
     }
 
+    if (this.props.statuses.length === 0) {
+      this.props.loadStatuses();
+    }
   }
 
   render() {
@@ -43,6 +47,7 @@ class App extends React.Component {
             <div>
               <Route path="/users" component={User}/>
               <Route path="/contacts" component={Contact}/>
+              <Route path="/contacts/:id" component={ContactLeads}/>
               <Route path="/leads" component={Lead}/>
               <Route path="/products" component={Product}/>
               <Route path="/statuses" component={Status}/>
@@ -58,15 +63,16 @@ const mapStateToProps = state => ({
   users: state.users,
   userRoles: state.userRoles,
   products: state.products,
-  contacts: state.contacts
+  contacts: state.contacts,
+  statuses: state.statuses
 });
 
 const mapDispatchToProps = dispatch => ({
   loadUsers: () => dispatch(loadUsers()),
   loadUserRoles: () => dispatch(loadUserRoles()),
   loadProducts: () => dispatch(loadProducts()),
-  loadContacts: () => dispatch(loadContacts())
-
+  loadContacts: () => dispatch(loadContacts()),
+  loadStatuses: () => dispatch(loadStatuses())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
