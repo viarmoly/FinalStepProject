@@ -12,6 +12,7 @@ import Status from '../Status/Status'
 import UserRole from '../UserRole/UserRole'
 import {loadUsers} from "../../actions/usersAction";
 import {loadUserRoles} from "../../actions/userRoleAcrtion";
+import {loadProducts} from "../../actions/productsAction";
 
 class App extends React.Component {
 
@@ -22,6 +23,10 @@ class App extends React.Component {
 
     if (this.props.userRoles.length === 0) {
       this.props.loadUserRoles();
+    }
+
+    if (this.props.products.length === 0) {
+      this.props.loadProducts();
     }
   }
 
@@ -38,7 +43,6 @@ class App extends React.Component {
               <Route path="/userRoles" component={UserRole}/>
             </div>
           </BrowserRouter>
-
         </div>
     );
   }
@@ -46,12 +50,17 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   users: state.users,
+  userRoles: state.userRoles,
+  products: state.products
   userRoles: state.userRoles
 });
 
 const mapDispatchToProps = dispatch => ({
   loadUsers: () => dispatch(loadUsers()),
-  loadUserRoles: () => dispatch(loadUserRoles())
+  loadUserRoles: () => dispatch(loadUserRoles()),
+  loadProducts: () => dispatch(loadProducts())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
