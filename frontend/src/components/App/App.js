@@ -13,6 +13,7 @@ import UserRole from '../UserRole/UserRole'
 import {loadUsers} from "../../actions/usersAction";
 import {loadUserRoles} from "../../actions/userRoleAcrtion";
 import {loadProducts} from "../../actions/productsAction";
+import {loadContacts} from "../../actions/contactsAction";
 
 class App extends React.Component {
 
@@ -28,6 +29,11 @@ class App extends React.Component {
     if (this.props.products.length === 0) {
       this.props.loadProducts();
     }
+
+    if (this.props.contacts.length === 0) {
+      this.props.loadContacts();
+    }
+
   }
 
   render() {
@@ -51,16 +57,16 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   userRoles: state.userRoles,
-  products: state.products
-  userRoles: state.userRoles
+  products: state.products,
+  contacts: state.contacts
 });
 
 const mapDispatchToProps = dispatch => ({
   loadUsers: () => dispatch(loadUsers()),
   loadUserRoles: () => dispatch(loadUserRoles()),
-  loadProducts: () => dispatch(loadProducts())
+  loadProducts: () => dispatch(loadProducts()),
+  loadContacts: () => dispatch(loadContacts())
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-

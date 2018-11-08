@@ -12,7 +12,7 @@ class User extends Component {
       return (
           <div>
             {user.userName}
-            </div>
+          </div>
       )
     });
 
