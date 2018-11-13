@@ -4,7 +4,6 @@ import {loadContact} from "../../actions/contactAction";
 import {contactLoading} from "../../actions/contactLoading";
 
 class ContactLeads extends Component {
-
   componentDidMount() {
     if (this.props.contact.length === 0) {
       this.props.loadContact(+this.props.match.params.id);
@@ -12,7 +11,6 @@ class ContactLeads extends Component {
   }
 
   render() {
-
     if (contactLoading) {
       return (
           <div>
