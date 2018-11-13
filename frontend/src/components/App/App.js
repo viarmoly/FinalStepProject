@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
 import './index.scss';
 
 
@@ -11,10 +10,11 @@ import Product from '../Product/Product'
 import Status from '../Status/Status'
 import UserRole from '../UserRole/UserRole'
 import {loadUsers} from "../../actions/usersAction";
+import {connect} from "react-redux";
 import {loadUserRoles} from "../../actions/userRoleAcrtion";
 import {loadProducts} from "../../actions/productsAction";
 import {loadContacts} from "../../actions/contactsAction";
-import {loadLeads, loadStatuses} from "../../actions/statusesAction";
+import {loadStatuses} from "../../actions/statusesAction";
 
 class App extends React.Component {
 
@@ -36,42 +36,43 @@ class App extends React.Component {
         }
 
 
-    if (this.props.statuses.length === 0) {
-      this.props.loadStatuses();
+        if (this.props.statuses.length === 0) {
+            this.props.loadStatuses();
+        }
     }
-  }
 
-  render() {
-    return (
-        <div className="container">
-          <BrowserRouter>
-            <div>
-              <Route path="/users" component={User}/>
-              <Route path="/contacts" component={Contact}/>
-              <Route path="/contacts/:id" component={ContactLeads}/>
-              <Route path="/leads" component={Lead}/>
-              <Route path="/products" component={Product}/>
-              <Route path="/statuses" component={Status}/>
-              <Route path="/userRoles" component={UserRole}/>
+    render() {
+        return (
+            <div className="container">
+                <BrowserRouter>
+                    <div>
+                        <Route path="/users" component={User}/>
+                        <Route path="/contacts" component={Contact}/>
+                        <Route path="/contacts/:id" component={ContactLeads}/>
+                        <Route path="/products" component={Product}/>
+                        <Route path="/statuses" component={Status}/>
+                        <Route path="/userRoles" component={UserRole}/>
+                    </div>
+                </BrowserRouter>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-  users: state.users,
-  userRoles: state.userRoles,
-  products: state.products,
-  contacts: state.contacts,
-  statuses: state.statuses
+    users: state.users,
+    userRoles: state.userRoles,
+    products: state.products,
+    contacts: state.contacts,
+    statuses: state.statuses
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadUsers: () => dispatch(loadUsers()),
-  loadUserRoles: () => dispatch(loadUserRoles()),
-  loadProducts: () => dispatch(loadProducts()),
-  loadContacts: () => dispatch(loadContacts()),
-  loadStatuses: () => dispatch(loadStatuses())
+    loadUsers: () => dispatch(loadUsers()),
+    loadUserRoles: () => dispatch(loadUserRoles()),
+    loadProducts: () => dispatch(loadProducts()),
+    loadContacts: () => dispatch(loadContacts()),
+    loadStatuses: () => dispatch(loadStatuses())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
