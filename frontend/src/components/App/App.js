@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './index.scss';
 
 
@@ -15,6 +15,10 @@ import {loadUserRoles} from "../../actions/userRoleAcrtion";
 import {loadProducts} from "../../actions/productsAction";
 import {loadContacts} from "../../actions/contactsAction";
 import {loadStatuses} from "../../actions/statusesAction";
+import LoginPage from "../../containers/LoginPage/LoginPage";
+import HomePage from "../../containers/HomePage/HomePage";
+import NotFound from "../404Handler/NotFound";
+
 
 class App extends React.Component {
 
@@ -45,14 +49,17 @@ class App extends React.Component {
         return (
             <div className="container">
                 <BrowserRouter>
-                    <div>
-                        <Route path="/users" component={User}/>
-                        <Route path="/contacts" component={Contact}/>
-                        <Route path="/contacts/:id" component={ContactLeads}/>
-                        <Route path="/products" component={Product}/>
-                        <Route path="/statuses" component={Status}/>
-                        <Route path="/userRoles" component={UserRole}/>
-                    </div>
+                    <Switch>
+                        <Route path="/login" exact component={LoginPage}/>
+                        <Route path="/home" exact component={HomePage}/>
+                        <Route path="/users" exact component={User}/>
+                        <Route path="/contacts" exact component={Contact}/>
+                        <Route path="/contacts/:id" exact component={ContactLeads}/>
+                        <Route path="/products" exact component={Product}/>
+                        <Route path="/statuses" exact component={Status}/>
+                        <Route path="/userRoles" exact component={UserRole}/>
+                        <Route component={NotFound}/>
+                    </Switch>
                 </BrowserRouter>
             </div>
         );
