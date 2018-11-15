@@ -6,28 +6,20 @@ class User extends Component {
   render() {
 
     const usersList = this.props.users;
-    console.log(this.props);
     const users = usersList.map((user) => {
 
       return (
-          <div>
-            <div>
-              <h3>
-                {user.name}
-              </h3>
-            </div>
+          <div key={user.userId}>
+            {user.userName}
           </div>
       )
     });
 
     return (
-        <div>
-          <div className="container">
-            <div className="main-content">
-              <h1>Users list</h1>
-              {users}
-            </div>
-          </div>
+        <div className="container">
+          <h1>Users list</h1>
+          {users}
+          <a href="/users/add" className="add-user-button">Add user</a>
         </div>
     )
   }

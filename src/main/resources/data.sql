@@ -21,10 +21,10 @@ insert into contact (contact_id,  contact_name, contact_phone, contact_email) va
 
 -- lead
  insert into lead (lead_id, lead_name, lead_creation_time, lead_comments, lead_contact_id, lead_user_id, lead_product_id, lead_status_id)
- values (1, 'First Lead', '2018-11-01T21:42:32+00:00', 'Comments', 1, 1, 1, 1);
+ values (1, 'First ContactLeads', '2018-11-01T21:42:32+00:00', 'Comments', 1, 1, 1, 1);
 
 insert into lead (lead_id, lead_name, lead_creation_time, lead_comments, lead_contact_id, lead_user_id, lead_product_id, lead_status_id)
- values (2, 'First2 Lead', '2018-11-01T21:42:32+00:00', 'Comments2', 1, 1, 1, 1);
+ values (2, 'First2 ContactLeads', '2018-11-01T21:42:32+00:00', 'Comments2', 1, 1, 1, 1);
 
 insert into lead (lead_id, lead_name, lead_creation_time, lead_comments, lead_contact_id, lead_user_id, lead_product_id, lead_status_id)
- values (3, 'Second Lead', '2018-11-01T21:42:32+00:00', 'Comments3', 2, 2, 2, 2);
+ values (3, 'Second ContactLeads', '2018-11-01T21:42:32+00:00', 'Comments3', 2, 2, 2, 2);

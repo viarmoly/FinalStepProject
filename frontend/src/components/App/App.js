@@ -1,16 +1,25 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
-import './index.scss';
-
-
-import User from '../User/User'
-import Contact from '../Contact/Contact'
-import Lead from '../Lead/Lead'
-import Product from '../Product/Product'
-import Status from '../Status/Status'
-import UserRole from '../UserRole/UserRole'
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {loadUsers} from "../../actions/usersAction";
+import './index.scss';
+import User from '../User/User';
+import Contact from '../Contact/Contact';
+import ContactLeads from '../Contact/ContactLeads';
+import Product from '../Product/Product';
+import Status from '../Status/Status';
+import UserRole from '../UserRole/UserRole';
+import {loadUserRoles} from "../../actions/userRoleAcrtion";
+import {loadProducts} from "../../actions/productsAction";
+import {loadContacts} from "../../actions/contactsAction";
+import {loadStatuses} from "../../actions/statusesAction";
+import LoginPage from "../../containers/LoginPage/LoginPage";
+import HomePage from "../../containers/HomePage/HomePage";
+import NotFound from "../404Handler/NotFound";
+import connect from "react-redux/es/connect/connect";
+import AddUserPage from "../User/AddUserPage";
+import AddContact from "../Contact/AddContact";
+import AddProduct from "../Product/AddProduct";
+
 
 class App extends React.Component {
 
@@ -18,35 +27,65 @@ class App extends React.Component {
     if (this.props.users.length === 0) {
       this.props.loadUsers();
     }
+
+    if (this.props.userRoles.length === 0) {
+      this.props.loadUserRoles();
+    }
+
+    if (this.props.products.length === 0) {
+      this.props.loadProducts();
+    }
+
+    if (this.props.contacts.length === 0) {
+      this.props.loadContacts();
+    }
+
+
+    if (this.props.statuses.length === 0) {
+      this.props.loadStatuses();
+    }
   }
 
   render() {
     return (
         <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
-            <User/>
-            <BrowserRouter>
-              <div>
-                <Route path="/users" component={User}/>
-                <Route path="/contacts" component={Contact}/>
-                <Route path="/leads" component={Lead}/>
-                <Route path="/products" component={Product}/>
-                <Route path="/statuses" component={Status}/>
-                <Route path="/userRoles" component={UserRole}/>
-              </div>
-            </BrowserRouter>
-          </div>
+          <BrowserRouter>
+            <Switch>
+              <Route path="/login" exact component={LoginPage}/>
+              <Route path="/home" exact component={HomePage}/>
+              <Route path="/users" exact component={User}/>
+              <Route path="/users/add" exact component={AddUserPage}/>
+              <Route path="/contacts" exact component={Contact}/>
+              <Route path="/contacts/:id" exact component={ContactLeads}/>
+              <Route path="/contacts/add" exact component={AddContact}/>
+              <Route path="/products" exact component={Product}/>
+              <Route path="/products/add" exact component={AddProduct}/>
+              <Route path="/statuses" exact component={Status}/>
+              <Route path="/userRoles" exact component={UserRole}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </BrowserRouter>
         </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  users: state.users
-});
+const
+    mapStateToProps = state => ({
+      users: state.users,
+      userRoles: state.userRoles,
+      products: state.products,
+      contacts: state.contacts,
+      statuses: state.statuses
+    });
 
-const mapDispatchToProps = dispatch => ({
-  loadUsers: () => dispatch(loadUsers())
-});
+const
+    mapDispatchToProps = dispatch => ({
+      loadUsers: () => dispatch(loadUsers()),
+      loadUserRoles: () => dispatch(loadUserRoles()),
+      loadProducts: () => dispatch(loadProducts()),
+      loadContacts: () => dispatch(loadContacts()),
+      loadStatuses: () => dispatch(loadStatuses())
+    });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

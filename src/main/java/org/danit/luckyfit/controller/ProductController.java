@@ -2,6 +2,7 @@ package org.danit.luckyfit.controller;
 
 import org.danit.luckyfit.entity.Product;
 import org.danit.luckyfit.service.impl.ProductService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/products")
+@RequestMapping(value = "/api/v1/products", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ProductController {
 
   @Autowired
@@ -34,11 +36,7 @@ public class ProductController {
 
   @PostMapping()
   public void add(@RequestBody Product product) {
-    Product currentProduct = new Product();
-    currentProduct.setProductId(product.getProductId());
-    currentProduct.setProductName(product.getProductName());
-
-    productService.add(currentProduct);
+    productService.add(product);
   }
 
   @PutMapping(value = "/{id}")

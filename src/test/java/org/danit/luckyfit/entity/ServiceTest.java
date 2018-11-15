@@ -10,11 +10,11 @@ public class ServiceTest {
   public void testService() {
     Product product = new Product();
 
-    product.setProductId(1);
-    product.setProductName("Product name");
+    product.setId(1);
+    product.setName("Product name");
 
-    assertEquals(1, product.getProductId());
-    assertEquals("Product name", product.getProductName());
-    assertEquals("Product(productId=1, productName=Product name)", product.toString());
+    assertEquals(1, product.getId());
+    assertEquals("Product name", product.getName());
+    assertEquals("Product(id=1, name=Product name)", product.toString());
   }
 }

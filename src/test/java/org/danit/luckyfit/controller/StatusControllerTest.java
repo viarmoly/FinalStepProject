@@ -73,7 +73,6 @@ public class StatusControllerTest {
   @Test
   public void testDeleteById() throws Exception {
     mockMvc.perform(delete("/api/v1/statuses/{id}", 1)).andExpect(status().isMethodNotAllowed());
-
   }
 }
 
