@@ -4,14 +4,13 @@ import {connect} from "react-redux";
 class Product extends Component {
 
   render() {
-
     const productsList = this.props.products;
     console.log(this.props);
     const products = productsList.map((product) => {
 
       return (
           <div>
-            {product.productName}
+            {product.name}
           </div>
       )
     });
