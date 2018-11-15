@@ -38,7 +38,7 @@ public class Lead {
 
   @ManyToOne
   @JoinColumn(name = "lead_user_id")
-  @JsonManagedReference
+  @JsonManagedReference(value = "leads")
   private User user;
 
   @ManyToOne

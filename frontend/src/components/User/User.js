@@ -6,11 +6,10 @@ class User extends Component {
   render() {
 
     const usersList = this.props.users;
-    console.log(this.props);
     const users = usersList.map((user) => {
 
       return (
-          <div>
+          <div key={user.userId}>
             {user.userName}
           </div>
       )
@@ -20,6 +19,7 @@ class User extends Component {
         <div className="container">
           <h1>Users list</h1>
           {users}
+          <a href="/users/add" className="add-user-button">Add user</a>
         </div>
     )
   }

@@ -30,7 +30,7 @@ public class UserRole {
   @Column(name = "user_role_name")
   private String role;
 
-  @JsonBackReference
+  @JsonBackReference(value = "userRole")
   @OneToMany(mappedBy = "userRole", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
   @ToString.Exclude
   List<User> users;
