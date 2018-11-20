@@ -13,7 +13,7 @@ import {loadProducts} from "../../actions/productsAction";
 import {loadContacts} from "../../actions/contactsAction";
 import {loadStatuses} from "../../actions/statusesAction";
 import LoginPage from "../../containers/LoginPage/LoginPage";
-import Board from "../../containers/Board/Board";
+import HomePage from "../../containers/HomePage/HomePage";
 import NotFound from "../404Handler/NotFound";
 import connect from "react-redux/es/connect/connect";
 import AddUserPage from "../User/AddUserPage";
@@ -52,7 +52,7 @@ class App extends React.Component {
           <BrowserRouter>
             <Switch>
               <Route path="/login" exact component={LoginPage}/>
-              <Route path="/home" exact component={Board}/>
+              <Route path="/home" exact component={HomePage}/>
               <Route path="/users" exact component={User}/>
               <Route path="/users/add" exact component={AddUserPage}/>
               <Route path="/contacts" exact component={Contact}/>
