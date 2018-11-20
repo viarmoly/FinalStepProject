@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "lead")
 @Data
-public class Lead {
+public class  Lead {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "lead_id")
